@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maryjoy Ravila Retail Mart – Your Trusted Shopping Partner in Quezon City</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop fashion, home essentials, small electronics and more at Maryjoy Ravila Retail Mart. Trusted since 2010. Fast delivery, affordable prices, and excellent customer service in Quezon City and nationwide.">
+  <link rel="icon" type="image/png" href="FAVICON.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: #c34726;
+      --primary: #b1371d;
+      --accent: #fff7db;
+      --highlight: #e6caa0;
+      --button: #bb3b28;
+      --button-hover: #e8894e;
+      --success: #51b96a;
+      --danger: #e13d37;
+      --radius: 18px;
+      --shadow: 0 5px 32px rgba(195,71,38,0.10);
+      --nav-height: 58px;
+      --max-width: 1120px;
+      --footer-bg: #fff7db;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--accent);
+      color: var(--primary);
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    /* NAVIGATION */
+    .main-nav {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; z-index: 2000;
+      background: var(--primary-bg);
+      box-shadow: 0 2px 16px #b1371d20;
+      min-height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .nav-inner {
+      width: 100%; max-width: var(--max-width);
+      display: flex; align-items: center; justify-content: space-between;
+      position: relative; height: var(--nav-height);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      height: var(--nav-height);
+      margin-left: 10px;
+    }
+    .nav-logo img {
+      height: 46px; width: 46px; border-radius: 10px;
+      background: var(--accent); border: 2px solid var(--highlight);
+      box-shadow: 0 2px 8px #b1371d30;
+    }
+    .nav-brand {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.13em;
+      letter-spacing: .05em;
+      text-shadow: 1px 1px 8px #b1371d40;
+    }
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      margin: 0;
+      z-index: 2301;
+      position: absolute; right: 0; top: 0;
+      height: var(--nav-height); width: 54px;
+    }
+    .nav-burger span {
+      display: block;
+      width: 30px; height: 4px;
+      margin: 5px 0;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: all .2s;
+    }
+    .nav-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; gap: 38px; align-items: center;
+      height: var(--nav-height);
+      font-size: 1em;
+      font-weight: 600;
+    }
+    .nav-list li a {
+      color: var(--accent); text-decoration: none;
+      padding: 12px 0; display: block;
+      border-bottom: 2.5px solid transparent;
+      transition: border .17s, color .13s;
+    }
+    .nav-list li a:hover,
+    .nav-list li a:focus {
+      border-bottom: 2.5px solid var(--highlight);
+      color: var(--highlight);
+    }
+    .cart-sticky {
+      position: fixed;
+      top: 12px; right: 24px;
+      background: var(--highlight);
+      color: var(--primary-bg);
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 1em;
+      padding: 11px 27px 11px 38px;
+      box-shadow: 0 4px 16px #c347261b;
+      cursor: pointer;
+      border: 2px solid var(--primary-bg);
+      transition: background .15s, color .15s, border .15s;
+      z-index: 3000;
+      display: flex; align-items: center;
+    }
+    .cart-sticky:hover, .cart-sticky:focus {
+      background: var(--primary-bg); color: var(--accent); border-color: var(--highlight);
+    }
+    .cart-icon { font-size: 1.25em; margin-left: -20px; margin-right: 14px; }
+    .cart-count {
+      background: var(--danger); color: #fff;
+      border-radius: 100px; font-size:.97em;
+      font-weight:700; padding: 1px 12px; min-width:28px; margin-left:8px;
+    }
+    @media (max-width: 900px) {
+      .main-nav { min-height: 52px; }
+      .nav-inner { height: 52px; }
+      .nav-list { height: 52px; gap: 22px; }
+      .cart-sticky { right: 7px; top: 12px; font-size: .98em; }
+    }
+    @media (max-width: 800px) {
+      .nav-burger { display: flex; }
+      .nav-list-bg {
+        display: none;
+        position: fixed; top: var(--nav-height); left: 0; right: 0; bottom: 0;
+        background: #c34726e9;
+        z-index: 2499;
+        opacity: 1;
+      }
+      .nav-list-bg.show { display: block; }
+      .nav-list {
+        position: fixed;
+        top: var(--nav-height); left: 0; right: 0;
+        background: var(--primary-bg);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+        box-shadow: 0 4px 18px #b1371d19;
+        border-radius: 0 0 13px 13px;
+        z-index: 2500;
+        align-items: flex-start;
+        width: 100vw;
+        height: auto;
+        justify-content: flex-start;
+      }
+      .nav-list.show { display: flex; }
+      .nav-list li a {
+        padding: 15px 0 15px 0;
+        border-bottom: 1px solid #e6caa0;
+        width: 100vw; max-width: 100vw; text-align: left; padding-left: 27px;
+      }
+      .cart-sticky { right: 8px; }
+      body { padding-top: 52px; }
+    }
+    /* RESPONSIVE FLOATING CART BUTTON FOR MOBILE */
+    @media (max-width: 600px) {
+      .cart-sticky {
+        left: 50%;
+        right: auto;
+        top: auto;
+        bottom: 18px;
+        transform: translateX(-50%);
+        padding: 12px 24px 12px 32px;
+        min-width: 160px;
+        box-shadow: 0 4px 24px #c347262a;
+        font-size: 1.09em;
+      }
+      .cart-icon { margin-left: -14px; margin-right: 10px; }
+    }
+    @media (max-width: 600px) {
+      .section-card, .faq-section, .policy-section { padding: 22px 7px 18px 7px; }
+      .footer-main { font-size: .95em; }
+      .category-grid { flex-direction: column; gap: 8px; }
+      .cat-block { min-width: 85vw; max-width: 97vw; }
+    }
+    /* HEADER HERO */
+    header {
+      padding-top: var(--nav-height);
+      background: linear-gradient(120deg, var(--primary-bg) 70%, #fff7db 100%);
+      min-height: 350px;
+      position: relative;
+      box-shadow: 0 2px 32px #b1371d0c;
+      z-index: 1;
+    }
+    .hero-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 62px 18px 44px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-logo {
+      margin-bottom: 16px;
+      z-index: 2;
+    }
+    .hero-logo img {
+      height: 92px; width: 92px;
+      border-radius: 19px;
+      background: #fff7db;
+      border: 3px solid var(--highlight);
+      box-shadow: 0 2px 20px #b1371d35;
+      display: block;
+      margin: 0 auto;
+    }
+    .hero-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.9em;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      text-shadow: 2px 3px 12px #b1371d, 0 2px 10px #b1371d1a;
+      margin-bottom: 11px;
+      line-height: 1.1;
+    }
+    .hero-subtitle {
+      font-size: 1.18em;
+      color: #fff;
+      font-weight: 500;
+      margin-bottom: 0;
+      margin-top: 8px;
+      text-shadow: 2px 3px 12px #b1371d, 0 2px 10px #b1371d1a;
+      line-height: 1.4;
+    }
+    .hero-highlight {
+      color: var(--highlight); font-weight: 700;
+      font-size: 1em;
+      margin-top: 13px;
+      margin-bottom: 0;
+      display: block;
+      text-shadow: 1px 2px 9px #b1371d3b;
+    }
+    /* SECTION STYLES */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 2vw 24px 2vw;
+      text-align: center;
+    }
+    .section-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 38px auto 0 auto;
+      padding: 36px 44px 34px 44px;
+      max-width: 750px;
+      text-align: center;
+      border: 1.3px solid var(--highlight);
+      transition: box-shadow .18s;
+    }
+    h2.section-title {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 800;
+      font-size: 1.2em;
+      color: var(--primary-bg);
+      margin: 0 0 22px 0;
+      gap: 11px;
+      letter-spacing: .01em;
+      text-shadow: none;
+    }
+    .section-title .emoji {
+      font-size: 1.18em;
+      margin-bottom: 0;
+    }
+    .section-body {
+      color: var(--primary);
+      font-size: 1.09em;
+      font-weight: 400;
+      margin: 0 auto 12px auto;
+      text-align: center;
+      line-height: 1.7;
+      max-width: 98%;
+      padding: 0 0 2px 0;
+    }
+    .about-hide { display: none; }
+    .about-readmore-btn {
+      display: inline-block;
+      border: none;
+      background: var(--primary-bg);
+      color: #fff;
+      font-family: inherit;
+      font-weight: 700;
+      border-radius: 100px;
+      padding: 8px 25px;
+      font-size: 1em;
+      margin: 18px auto 0 auto;
+      cursor: pointer;
+      transition: background .13s;
+    }
+    .about-readmore-btn:hover, .about-readmore-btn:focus { background: var(--button-hover); color: var(--primary-bg);}
+    /* WHY CHOOSE US */
+    .why-list {
+      display: flex; flex-wrap: wrap;
+      gap: 19px; margin: 15px 0 7px 0;
+      justify-content: center;
+      text-align: center;
+    }
+    .why-card {
+      background: #ffe9d2;
+      border-radius: 13px;
+      box-shadow: 0 2px 12px #b1371d19;
+      padding: 15px 14px 14px 14px;
+      min-width: 165px; max-width: 220px;
+      flex: 1 1 165px;
+      border: 1.2px solid #e6caa0;
+      font-size: 1em;
+      font-weight: 600;
+      display: flex; flex-direction: column; align-items: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: var(--primary);
+    }
+    .why-card .why-title {
+      font-weight: 800; font-size: 1em; color: var(--primary-bg); margin-bottom: 6px;
+    }
+    .why-desc { font-weight: 400; font-size: .98em; color: var(--primary); }
+    /* PRODUCTS */
+    .category-section {margin-bottom:54px;}
+    .category-grid {
+      display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; flex-direction: row;
+      text-align: center;
+    }
+    .cat-block {
+      flex: 1 1 260px; min-width: 210px; max-width: 360px;
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 10px 13px 10px;
+      margin-bottom: 22px;
+      border: 1.3px solid #e6caa0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cat-title {
+      font-size:1.10em; font-weight:800; color:var(--primary-bg); margin-bottom:10px; letter-spacing:.01em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+    }
+    .item-list {
+      display: flex; flex-wrap: wrap; gap: 11px; margin-bottom:6px; justify-content: center;
+    }
+    .item-card {
+      background: #fff7db;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px #b1371d08;
+      padding: 12px 11px 13px 11px;
+      min-width: 110px; max-width: 155px;
+      flex: 1 1 110px;
+      border: 1.1px solid #e6caa0;
+      margin-bottom: 4px;
+      display: flex; flex-direction: column; align-items: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+    }
+    .item-img-holder {
+      width: 48px; height: 48px;
+      background: #f7e6cc;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      border: 1px solid #e6caa0;
+    }
+    .item-img-holder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .item-img-placeholder { color: #c34726; font-size: 2em; }
+    .item-name { font-weight:700; color:var(--primary); margin-bottom:3px; font-size:.95em;}
+    .item-qty { color:var(--danger); font-size:.95em; font-weight:700; margin-bottom:4px;}
+    .item-price { color:var(--primary-bg); font-size:1em; font-weight:700; margin-bottom:5px;}
+    .add-btn {
+      background: var(--primary-bg);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 100px;
+      padding: 7px 15px;
+      font-size: .95em;
+      cursor: pointer;
+      margin-top: auto;
+      transition: background .13s;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+    }
+    .add-btn:disabled { opacity:.6; cursor:not-allowed;}
+    /* DELIVERY INFO */
+    .delivery-list {
+      display: inline-block;
+      text-align: left;
+      margin: 0 auto 10px auto;
+      font-size: 1em;
+      line-height: 1.55;
+      color: var(--primary);
+      max-width: 98%;
+      padding-left: 1.2em;
+    }
+    .delivery-list strong { color: var(--primary-bg);}
+    /* FAQ */
+    .faq-section {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 38px auto 0 auto;
+      padding: 36px 44px 20px 44px;
+      max-width: 750px;
+      border: 1.3px solid var(--highlight);
+      text-align: left;
+    }
+    .faq-title {
+      font-size: 1.15em;
+      color: var(--primary-bg);
+      font-weight: 800;
+      margin-bottom: 17px;
+      text-align: center;
+      letter-spacing: .01em;
+    }
+    .faq-item { margin-bottom: 14px; }
+    .faq-q { font-weight: 700; color: var(--primary-bg); margin-bottom: 2px; }
+    .faq-a { color: #333; font-size: .99em; margin-left: 10px; }
+    .faq-q:before {
+      content: "Q:"; color: var(--primary-bg); margin-right: 6px; font-weight: 800;
+    }
+    .faq-a:before {
+      content: "A:"; color: var(--success); margin-right: 6px; font-weight: 700;
+    }
+    /* CONTACT */
+    .contact-list {
+      display: inline-block; text-align: left;
+      margin: 0 auto 10px auto; font-size: 1em; line-height: 1.7;
+      color: var(--primary); max-width: 98%;
+      padding-left: 1.2em;
+    }
+    .contact-list strong { color: var(--primary-bg);}
+    /* CART MODAL */
+    .cart-modal-bg {
+      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.37); z-index:1200;
+    }
+    .cart-modal {
+      display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:350px; max-width:96vw; background:#fff;
+      border-radius:var(--radius); box-shadow:0 8px 32px #c3472644,0 0 0 5px #e6caa044;
+      z-index:1300; padding:19px 13px 14px 13px; border:2px solid var(--primary-bg); text-align:left;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+    }
+    .cart-modal h3 {color:var(--primary-bg); font-size:1.07em; margin:0 0 10px 0;}
+    .cart-items-list { list-style:none; padding:0; margin:0 0 10px 0;}
+    .cart-items-list li { font-size:.99em; padding:7px 0; display:flex; justify-content:space-between; align-items:center;}
+    .cart-modal .cart-count { background:var(--danger); color:#fff; border-radius:100px; font-size:.95em; font-weight:700; padding:1px 9px; min-width:26px;}
+    .cart-modal .remove-btn { background:none; border:none; color:var(--danger); font-size:1.1em; cursor:pointer; font-weight:700; margin-left:10px;}
+    .cart-total-row { font-weight:700; color:var(--success);}
+    .cart-modal .empty-msg { color:#aaa; font-style:italic; margin:10px 0;}
+    .cart-modal .action-btn {
+      background: var(--primary-bg); color:#fff; font-weight:700; border:none; border-radius:100px; font-size:.96em;
+      padding:9px 16px; cursor:pointer; margin:10px 7px 0 0; transition:background .13s;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+    }
+    .cart-modal .action-btn:hover { background: var(--button-hover); color:var(--primary-bg);}
+    /* POLICY PAGES */
+    .policy-section {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 38px auto 0 auto;
+      padding: 30px 30px 20px 30px;
+      max-width: 700px;
+      border: 1.2px solid var(--highlight);
+      text-align: left;
+    }
+    .policy-title {
+      font-size: 1.1em;
+      color: var(--primary-bg);
+      font-weight: 800;
+      margin-bottom: 13px;
+      text-align: left;
+      letter-spacing: .01em;
+    }
+    .policy-section ul {
+      margin-left: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    /* FOOTER */
+    footer {
+      background: var(--footer-bg);
+      color: var(--primary);
+      padding: 36px 10px 28px 10px;
+      margin-top: 48px;
+      font-size: 1.06em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      border-top: 3px solid var(--primary-bg);
+    }
+    .footer-main {
+      max-width: 670px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .footer-contact-title {
+      margin-bottom: 7px;
+      font-weight: 700;
+      font-size: 1.09em;
+      color: var(--primary-bg);
+    }
+    .footer-contact {
+      margin-bottom: 9px;
+      color: var(--primary);
+      font-size: 1em;
+    }
+    .footer-contact a { color: var(--primary-bg); text-decoration: underline; }
+    .footer-copy {
+      color: #ad7c51;
+      font-size: 0.97em;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+    .footer-links {
+      margin-top: 7px;
+      font-size: .98em;
+    }
+    .footer-links a {
+      color: var(--primary-bg);
+      margin: 0 6px;
+      text-decoration: underline;
+      transition: color .13s;
+    }
+    .footer-links a:hover { color: var(--highlight); }
+  </style>
+</head>
+<body>
+  <div class="cart-sticky" id="cart-sticky" tabindex="0" onclick="showCart()" aria-label="Show Cart">
+    <span class="cart-icon">🛒</span>
+    Cart <span class="cart-count" id="cart-count">0</span>
+  </div>
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="LOGO.png" alt="Maryjoy Ravila Retail Mart Logo">
+        <span class="nav-brand">Maryjoy Ravila Retail Mart</span>
+      </div>
+      <button class="nav-burger" aria-label="Open Menu" onclick="toggleNavMenu()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-list-bg" id="nav-list-bg"></div>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#delivery-info">Delivery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <header>
+    <div class="hero-inner">
+      <div class="hero-logo">
+        <img src="LOGO.png" alt="Maryjoy Ravila Retail Mart Logo" width="92" height="92">
+      </div>
+      <div class="hero-title">Maryjoy Ravila Retail Mart</div>
+      <div class="hero-subtitle">Your Trusted Shopping Partner in Quezon City</div>
+      <span class="hero-highlight">Serving customers across Metro Manila & beyond since 2010</span>
+    </div>
+  </header>
+  <main>
+    <div class="section-card" id="about">
+      <h2 class="section-title"><span class="emoji">🏬</span>ABOUT US</h2>
+      <div class="section-body">
+        Maryjoy Ravila Retail Mart has been a favorite shopping destination in Quezon City since 2010. We’re dedicated to offering a carefully curated selection of top-quality clothing, household goods, electronics, and accessories. Our mission is to make every purchase easy, affordable, and satisfying for our customers, while building relationships based on trust and service excellence.
+      </div>
+      <button class="about-readmore-btn" id="aboutReadMoreBtn" onclick="toggleAbout()">Read more</button>
+      <div id="about-more" class="about-hide">
+        <div class="section-body">
+          <br>
+          Our store is conveniently located in Cubao, Quezon City, serving customers all over Metro Manila and across the Philippines. Every product we offer undergoes strict quality checks, and we’re committed to fast shipping, secure payments, and genuine customer care. <br>
+          <br>
+          <b>Our Mission:</b> To provide affordable, high-quality products that make your daily life easier and more enjoyable.<br>
+          <b>Our Values:</b>
+          <ul style="text-align:left; margin:0 auto 0 0; max-width:95%;">
+            <li><b>Customer Satisfaction:</b> We always put customers first.</li>
+            <li><b>Quality Assurance:</b> Only products that meet our high standards.</li>
+            <li><b>Convenience:</b> Fast delivery and secure payments.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section-card" id="why">
+      <h2 class="section-title"><span class="emoji">🌟</span>WHY SHOP WITH US?</h2>
+      <div class="why-list">
+        <div class="why-card">
+          <div class="why-title">✅ High-Quality Products</div>
+          <div class="why-desc">Enjoy a wide range of carefully selected products that meet your needs and standards.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-title">💬 24/7 Customer Support</div>
+          <div class="why-desc">Have questions? Our team is always available to help, anytime you need us.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-title">🛍️ Affordable Prices</div>
+          <div class="why-desc">Shop more and save more! Get the best deals across all categories—no compromise on quality.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-title">🚚 Fast Delivery</div>
+          <div class="why-desc">Your orders delivered quickly and safely, right to your doorstep—nationwide.</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-card category-section" id="products">
+      <h2 class="section-title"><span class="emoji">🛒</span>PRODUCTS</h2>
+      <div class="category-grid">
+        <div class="cat-block">
+          <div class="cat-title">👚 Clothing</div>
+          <div class="item-list" id="clothing-list"></div>
+        </div>
+        <div class="cat-block">
+          <div class="cat-title">🏡 Household Items</div>
+          <div class="item-list" id="household-list"></div>
+        </div>
+        <div class="cat-block">
+          <div class="cat-title">🔌 Electronics</div>
+          <div class="item-list" id="electronics-list"></div>
+        </div>
+        <div class="cat-block">
+          <div class="cat-title">🎒 Accessories</div>
+          <div class="item-list" id="accessories-list"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-card" id="delivery-info">
+      <h2 class="section-title"><span class="emoji">🚚</span>DELIVERY INFORMATION</h2>
+      <ul class="delivery-list">
+        <li><strong>Nationwide Delivery:</strong> We deliver anywhere in the Philippines.</li>
+        <li><strong>Standard Delivery:</strong> 3–5 business days.</li>
+        <li><strong>Express Delivery:</strong> 1–2 business days (Metro Manila).</li>
+        <li><strong>Shipping Fees:</strong> Calculated at checkout based on location and delivery option.</li>
+        <li><strong>Tracking:</strong> Tracking number provided after order dispatch.</li>
+      </ul>
+    </div>
+    <div class="faq-section" id="faq">
+      <div class="faq-title">Frequently Asked Questions</div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer nationwide delivery?</div>
+        <div class="faq-a">Yes! We deliver all over the Philippines. Choose your preferred delivery method at checkout.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I return an item if it doesn't meet my expectations?</div>
+        <div class="faq-a">Absolutely. You may return or exchange any unused item within 7 days of purchase in original packaging.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer discounts or sales?</div>
+        <div class="faq-a">Yes! Look out for exclusive sales on our homepage and sign up for our newsletter for special offers.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What payment options do you accept?</div>
+        <div class="faq-a">We accept credit/debit cards, GCash, and cash on delivery (COD).</div>
+      </div>
+    </div>
+    <div class="section-card" id="contact">
+      <h2 class="section-title"><span class="emoji">📞</span>CONTACT US</h2>
+      <ul class="contact-list">
+        <li><strong>Email:</strong> <a href="mailto:admin@maryjoyravilamart.com">admin@maryjoyravilamart.com</a>, <a href="mailto:support@maryjoyravilamart.com">support@maryjoyravilamart.com</a></li>
+        <li><strong>Phone:</strong> +63 912 345 6789</li>
+        <li><strong>Address:</strong> 1234 Aurora Blvd., Cubao, Quezon City, Metro Manila, 1109, Philippines</li>
+        <li><strong>Business Hours:</strong> Monday–Saturday: 8:00 AM – 6:00 PM | Sunday: Closed</li>
+      </ul>
+    </div>
+    <!-- Policy Sections -->
+    <div class="policy-section" id="privacy-policy">
+      <div class="policy-title">Privacy Policy (Summary)</div>
+      <p>
+        Your privacy is important to us. We collect only the information necessary for order processing and customer service. Your personal data is kept secure and will never be shared with third parties except as required for order fulfillment. By shopping with us, you agree to our privacy practices. For full details, please contact us.
+      </p>
+    </div>
+    <div class="policy-section" id="terms">
+      <div class="policy-title">Terms & Conditions (Summary)</div>
+      <ul>
+        <li>All purchases are subject to product availability and acceptance of order.</li>
+        <li>Prices are subject to change without notice. In the event of a pricing error, we reserve the right to cancel the order.</li>
+        <li>By using this website, you agree to comply with all applicable laws and our store policies.</li>
+      </ul>
+    </div>
+    <div class="policy-section" id="return-policy">
+      <div class="policy-title">Return & Refund Policy (Summary)</div>
+      <ul>
+        <li>Returns or exchanges accepted within 7 days of purchase for unused, original-condition items.</li>
+        <li>Refunds processed within 5 business days of approved return.</li>
+        <li>Return shipping fees may apply unless the item is defective or incorrect.</li>
+      </ul>
+    </div>
+  </main>
+  <div class="cart-modal-bg" id="cart-modal-bg"></div>
+  <aside class="cart-modal" id="cart-modal" tabindex="0">
+    <h3>🛒 Your Cart <span class="cart-count" id="cart-modal-count">0</span></h3>
+    <ul class="cart-items-list" id="cart-items"></ul>
+    <div class="empty-msg" id="cart-empty-msg" style="display:none;">Your cart is empty.</div>
+    <div class="cart-total-row" id="cart-total-row"></div>
+    <button class="action-btn" onclick="checkout()" aria-label="Checkout">Checkout</button>
+    <button class="action-btn" onclick="emptyCart()" aria-label="Empty Cart">Empty Cart</button>
+    <button class="action-btn close-btn" onclick="closeCart()" aria-label="Close">Close</button>
+  </aside>
+  <footer>
+    <div class="footer-main">
+      <div class="footer-contact">
+        <div class="footer-contact-title"><b>Maryjoy Ravila Retail Mart</b></div>
+        <div>
+          1234 Aurora Blvd., Cubao, Quezon City, Metro Manila, 1109, Philippines<br>
+          <b>Phone:</b> +63 912 345 6789 &nbsp;|&nbsp; <b>Email:</b>
+          <a href="mailto:admin@maryjoyravilamart.com">admin@maryjoyravilamart.com</a>
+        </div>
+        <div>Business Registration No: 1234567890 | VAT No: 987654321</div>
+      </div>
+      <div class="footer-links">
+        <a href="#privacy-policy">Privacy Policy</a> |
+        <a href="#terms">Terms & Conditions</a> |
+        <a href="#return-policy">Return & Refund Policy</a>
+      </div>
+      <div class="footer-copy">
+        © 2025 Maryjoy Ravila Retail Mart. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Responsive Navigation
+    function toggleNavMenu() {
+      var nav = document.getElementById('nav-list');
+      var bg = document.getElementById('nav-list-bg');
+      nav.classList.toggle('show');
+      bg.classList.toggle('show');
+    }
+    window.addEventListener('resize', function() {
+      if(window.innerWidth > 800) {
+        document.getElementById('nav-list').classList.remove('show');
+        document.getElementById('nav-list-bg').classList.remove('show');
+      }
+    });
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('nav-list');
+      var burger = document.querySelector('.nav-burger');
+      var bg = document.getElementById('nav-list-bg');
+      if(nav.classList.contains('show') &&
+        !nav.contains(e.target) &&
+        !burger.contains(e.target) &&
+        !bg.contains(e.target)) {
+        nav.classList.remove('show');
+        bg.classList.remove('show');
+      }
+    });
+    // Smooth anchor scroll for mobile nav
+    window.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('.nav-list li a').forEach(function(link){
+        link.addEventListener('click', function(e){
+          var nav = document.getElementById('nav-list');
+          var bg = document.getElementById('nav-list-bg');
+          if(nav.classList.contains('show')) {
+            e.preventDefault();
+            var targetId = link.getAttribute('href').replace('#','');
+            var target = document.getElementById(targetId);
+            if(target) target.scrollIntoView({behavior:'smooth'});
+            nav.classList.remove('show');
+            bg.classList.remove('show');
+          }
+        });
+      });
+    });
+    // About Read More toggle
+    function toggleAbout() {
+      var more = document.getElementById("about-more");
+      var btn = document.getElementById("aboutReadMoreBtn");
+      if (more.classList.contains("about-hide")) {
+        more.classList.remove("about-hide");
+        btn.textContent = "Read less";
+      } else {
+        more.classList.add("about-hide");
+        btn.textContent = "Read more";
+      }
+    }
+    // Demo product data
+    function randQty() { return Math.floor(Math.random()*15)+7; }
+    function randPrice(base) { return base+Math.floor(Math.random()*500); }
+    const clothing = [
+      { name: "Classic T-Shirt", price: randPrice(250), qty: randQty(), img: "" },
+      { name: "Summer Dress", price: randPrice(550), qty: randQty(), img: "" },
+      { name: "Blue Denim Jeans", price: randPrice(680), qty: randQty(), img: "" },
+      { name: "Canvas Sneakers", price: randPrice(790), qty: randQty(), img: "" }
+    ];
+    const household = [
+      { name: "Comfort Bedding Set", price: randPrice(1190), qty: randQty(), img: "" },
+      { name: "Kitchen Knife Set", price: randPrice(490), qty: randQty(), img: "" },
+      { name: "Portable Blender", price: randPrice(980), qty: randQty(), img: "" },
+      { name: "All-Purpose Cleaner", price: randPrice(120), qty: randQty(), img: "" }
+    ];
+    const electronics = [
+      { name: "Wireless Headphones", price: randPrice(1200), qty: randQty(), img: "" },
+      { name: "Fast Charger", price: randPrice(350), qty: randQty(), img: "" },
+      { name: "Smart Home Plug", price: randPrice(680), qty: randQty(), img: "" }
+    ];
+    const accessories = [
+      { name: "Leather Wallet", price: randPrice(390), qty: randQty(), img: "" },
+      { name: "Canvas Tote Bag", price: randPrice(260), qty: randQty(), img: "" },
+      { name: "Stylish Hat", price: randPrice(210), qty: randQty(), img: "" }
+    ];
+    function renderCategory(list, domId, cat) {
+      const el = document.getElementById(domId);
+      el.innerHTML = '';
+      list.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+          <div class="item-img-holder">
+            <span class="item-img-placeholder">🛍️</span>
+          </div>
+          <div class="item-name">${item.name}</div>
+          <div class="item-qty">Stock: ${item.qty}</div>
+          <div class="item-price">₱${item.price.toLocaleString()}</div>
+          <button class="add-btn" onclick="addToCart('${cat}',${idx})" ${item.qty === 0?'disabled':''}>Add to Cart</button>
+        `;
+        el.appendChild(card);
+      });
+    }
+    window.addEventListener("DOMContentLoaded", function() {
+      renderCategory(clothing, 'clothing-list', 'clothing');
+      renderCategory(household, 'household-list', 'household');
+      renderCategory(electronics, 'electronics-list', 'electronics');
+      renderCategory(accessories, 'accessories-list', 'accessories');
+      const savedCart = localStorage.getItem('mjrm_cart');
+      if(savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCart();
+      }
+      document.getElementById("cart-sticky").addEventListener("keydown", function(e){
+        if(e.key === "Enter" || e.key === " ") showCart();
+      });
+      document.getElementById("cart-modal-bg").onclick = closeCart;
+    });
+    // Cart Logic
+    let cart = [];
+    function addToCart(cat, idx) {
+      let prod;
+      if(cat==='clothing') prod = clothing[idx];
+      else if(cat==='household') prod = household[idx];
+      else if(cat==='electronics') prod = electronics[idx];
+      else prod = accessories[idx];
+      if(prod.qty < 1) return alert("Out of stock!");
+      let existing = cart.find(item => item.name === prod.name);
+      if(existing) {
+        if(existing.qty < prod.qty) existing.qty++;
+        else return alert("No more stock available!");
+      } else {
+        cart.push({ name: prod.name, price: prod.price, qty: 1, stock: prod.qty });
+      }
+      updateCart();
+      highlightCart();
+    }
+    function updateCart() {
+      let totalCount = 0, totalAmount = 0;
+      cart.forEach(item => { totalCount += item.qty; totalAmount += item.price*item.qty; });
+      document.getElementById('cart-count').textContent = totalCount;
+      document.getElementById('cart-modal-count').textContent = totalCount;
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      if(cart.length === 0) {
+        document.getElementById('cart-empty-msg').style.display = '';
+        document.getElementById('cart-total-row').textContent = '';
+      } else {
+        document.getElementById('cart-empty-msg').style.display = 'none';
+        cart.forEach((item, idx) => {
+          let li = document.createElement("li");
+          li.innerHTML = `<span>${item.name} × ${item.qty} <span style="color:var(--danger);font-size:.89em;">(Stock:${item.stock})</span> - ₱${(item.price*item.qty).toLocaleString()}</span>
+            <button class="remove-btn" aria-label="Remove ${item.name} from cart" onclick="removeCartItem(${idx})" tabindex="0">&times;</button>`;
+          cartItems.appendChild(li);
+        });
+        let totalItem = document.createElement("li");
+        totalItem.className = "cart-total-row";
+        totalItem.innerHTML = `<span>Grand Total:</span> <span>₱${totalAmount.toLocaleString()}</span>`;
+        cartItems.appendChild(totalItem);
+        document.getElementById('cart-total-row').textContent = '';
+      }
+      localStorage.setItem('mjrm_cart', JSON.stringify(cart));
+    }
+    function removeCartItem(idx) {
+      cart.splice(idx, 1);
+      updateCart();
+    }
+    function highlightCart() {
+      const cartDiv = document.getElementById('cart-sticky');
+      cartDiv.style.boxShadow = "0px 12px 40px #e6caa077, 0 0 0 10px #c34726";
+      setTimeout(() => cartDiv.style.boxShadow = "", 500);
+    }
+    function showCart() {
+      document.getElementById("cart-modal").style.display = "block";
+      document.getElementById("cart-modal-bg").style.display = "block";
+    }
+    function closeCart() {
+      document.getElementById("cart-modal").style.display = "none";
+      document.getElementById("cart-modal-bg").style.display = "none";
+    }
+    function checkout() {
+      if(cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      localStorage.setItem('mjrm_cart', JSON.stringify(cart));
+      window.location.href = "order-summary.html";
+    }
+    function emptyCart() {
+      if(!confirm("Are you sure you want to empty your cart?")) return;
+      cart = [];
+      updateCart();
+    }
+  </script>
+</body>
+</html>
