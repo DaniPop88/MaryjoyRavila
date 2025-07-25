@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmation – Maryjoy Ravila Retail Mart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Order summary and confirmation for Maryjoy Ravila Retail Mart. Review your order, verify details, and complete payment securely.">
+  <link rel="icon" type="image/png" href="FAVICON.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: #c34726;
+      --primary: #b1371d;
+      --accent: #fff7db;
+      --highlight: #e6caa0;
+      --success: #43b047;
+      --danger: #e13d37;
+      --radius: 18px;
+      --shadow: 0 5px 32px rgba(195,71,38,0.10);
+      --max-width: 520px;
+      --footer-bg: #fff7db;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--accent);
+      color: var(--primary);
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+    .main-nav {
+      width: 100vw;
+      background: var(--primary-bg);
+      box-shadow: 0 2px 16px #b1371d20;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-inner {
+      width: 100%; max-width: var(--max-width);
+      display: flex; align-items: center; justify-content: space-between;
+      position: relative; height: 58px;
+      padding: 0 12px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      height: 58px;
+    }
+    .nav-logo img {
+      height: 40px; width: 40px; border-radius: 10px;
+      background: var(--accent); border: 2px solid var(--highlight);
+      box-shadow: 0 2px 8px #b1371d30;
+    }
+    .nav-brand {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.09em;
+      letter-spacing: .05em;
+      text-shadow: 1px 1px 8px #b1371d40;
+    }
+    @media (max-width: 600px) {
+      .nav-inner { height: 52px; }
+      .nav-logo img { height: 30px; width: 30px;}
+      .nav-brand { font-size: .95em;}
+    }
+    .confirmation-section {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 46px auto 0 auto;
+      padding: 36px 28px 34px 28px;
+      max-width: var(--max-width);
+      text-align: center;
+      border: 1.3px solid var(--highlight);
+    }
+    .confirmation-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 800;
+      font-size: 1.3em;
+      color: var(--primary-bg);
+      margin: 0 0 13px 0;
+      letter-spacing: .01em;
+      text-shadow: none;
+    }
+    .confirmation-check {
+      font-size: 3em;
+      color: var(--success);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .confirmation-body {
+      color: var(--primary);
+      font-size: 1.07em;
+      font-weight: 500;
+      margin: 0 auto 14px auto;
+      text-align: center;
+      line-height: 1.7;
+      max-width: 99%;
+      padding: 0 0 2px 0;
+    }
+    .confirmation-contact {
+      color: var(--primary);
+      font-size: .98em;
+      margin-bottom: 0;
+      margin-top: 7px;
+      font-weight: 400;
+    }
+    .order-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 22px 0 18px 0;
+      background: #fff7db;
+      border-radius: 11px;
+      box-shadow: 0 2px 8px #e6caa044;
+      overflow: hidden;
+      font-size: 1em;
+      font-family: inherit;
+    }
+    .order-summary-table th, .order-summary-table td {
+      padding: 11px 8px;
+      border-bottom: 1px solid #e6caa0;
+      text-align: left;
+    }
+    .order-summary-table th {
+      background: #ffe9d2;
+      color: var(--primary-bg);
+      font-weight: 700;
+    }
+    .order-summary-table td {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    .order-summary-table tr:last-child td {
+      border-bottom: none;
+    }
+    .summary-total {
+      color: var(--success); font-weight: 800;
+    }
+    .summary-label {
+      font-weight: 700; color: var(--primary-bg);
+    }
+    .important-note {
+      background: #fff7db;
+      color: var(--danger);
+      border-radius: 10px;
+      margin: 18px 0 0 0;
+      padding: 14px 12px;
+      font-size: 1em;
+      font-weight: 600;
+      box-shadow: 0 2px 10px #e13d3717;
+      border: 1.3px solid var(--highlight);
+      text-align: center;
+    }
+    .confirmation-steps {
+      text-align: left;
+      margin: 23px auto 0 auto;
+      max-width: 95%;
+      font-size: 1em;
+      color: var(--primary);
+      line-height: 1.7;
+    }
+    .confirmation-steps li {
+      margin-bottom: 9px;
+      padding-left: 2px;
+    }
+    .confirmation-steps .step-label {
+      font-weight: 700; color: var(--primary-bg);
+    }
+    .confirmation-steps .step-action {
+      font-weight: 500; color: var(--primary);
+    }
+    .confirmation-actions {
+      margin: 24px 0 0 0;
+      text-align: center;
+    }
+    .action-btn {
+      background: var(--primary-bg);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 100px;
+      padding: 11px 19px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 0 7px 0 0;
+      transition: background .13s;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+      box-shadow: 0 2px 10px #c3472633;
+    }
+    .action-btn:hover, .action-btn:focus { background: var(--highlight); color: var(--primary-bg);}
+    @media (max-width: 600px) {
+      .confirmation-section { padding: 18px 5vw 22px 5vw; margin-top: 18px;}
+      .order-summary-table th, .order-summary-table td { padding: 7px 5px; font-size: .95em;}
+      .important-note { padding: 11px 4vw; font-size: .97em;}
+    }
+    footer {
+      background: var(--footer-bg);
+      color: var(--primary);
+      padding: 28px 10px 18px 10px;
+      margin-top: 48px;
+      font-size: 1.04em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      border-top: 3px solid var(--primary-bg);
+    }
+    .footer-main {
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .footer-contact-title {
+      margin-bottom: 7px;
+      font-weight: 700;
+      font-size: 1.09em;
+      color: var(--primary-bg);
+    }
+    .footer-contact {
+      margin-bottom: 7px;
+      color: var(--primary);
+      font-size: .98em;
+    }
+    .footer-contact a { color: var(--primary-bg); text-decoration: underline; }
+    .footer-copy {
+      color: #ad7c51;
+      font-size: 0.97em;
+      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+    .footer-links {
+      margin-top: 7px;
+      font-size: .98em;
+    }
+    .footer-links a {
+      color: var(--primary-bg);
+      margin: 0 6px;
+      text-decoration: underline;
+      transition: color .13s;
+    }
+    .footer-links a:hover { color: var(--highlight); }
+  </style>
+</head>
+<body>
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="LOGO.png" alt="Maryjoy Ravila Retail Mart Logo">
+        <span class="nav-brand">Maryjoy Ravila Retail Mart</span>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <section class="confirmation-section">
+      <span class="confirmation-check">✔️</span>
+      <div class="confirmation-title">Order Submitted Successfully!</div>
+      <div class="confirmation-body">
+        Thank you for shopping with Maryjoy Ravila Retail Mart.<br>
+        Your order has been received and is currently being processed.<br>
+        One of our dedicated team members will reach out to you soon to confirm all order details, including product colors, quantities, and availability. Please verify these details once contacted.
+      </div>
+      <table class="order-summary-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody id="order-summary-table-body">
+          <!-- Populated by JS below -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="summary-label">Order Total</td>
+            <td class="summary-total" id="order-summary-total">₱0</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="confirmation-contact">
+        <b>Questions?</b> Feel free to reach us at <a href="mailto:support@maryjoyravilamart.com">support@maryjoyravilamart.com</a> or call +63 912 345 6789.
+      </div>
+      <ul class="confirmation-steps">
+        <li><span class="step-label">Step 1:</span> <span class="step-action">Our staff will contact you to review and confirm your order.</span></li>
+        <li><span class="step-label">Step 2:</span> <span class="step-action">Once you verify all details, we’ll send you a secure payment link for your chosen payment method.</span></li>
+        <li><span class="step-label">Step 3:</span> <span class="step-action">Please complete your payment within <b>24 hours</b> to secure your order. Orders not paid within this timeframe will be automatically cancelled.</span></li>
+      </ul>
+      <div class="important-note">
+        <span>To ensure a smooth shopping experience, please pay promptly and confirm all details with our staff. Your satisfaction is our priority!</span>
+      </div>
+      <div class="confirmation-actions">
+        <button class="action-btn" onclick="window.location.href='index.html'">Back to Shop</button>
+        <button class="action-btn" onclick="window.location.href='mailto:support@maryjoyravilamart.com'">Contact Support</button>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-main">
+      <div class="footer-contact">
+        <div class="footer-contact-title"><b>Maryjoy Ravila Retail Mart</b></div>
+        <div>
+          1234 Aurora Blvd., Cubao, Quezon City, Metro Manila, 1109, Philippines<br>
+          <b>Phone:</b> +63 912 345 6789 &nbsp;|&nbsp; <b>Email:</b>
+          <a href="mailto:admin@maryjoyravilamart.com">admin@maryjoyravilamart.com</a>
+        </div>
+        <div>Business Registration No: 1234567890 | VAT No: 987654321</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#privacy-policy">Privacy Policy</a> |
+        <a href="index.html#terms">Terms & Conditions</a> |
+        <a href="index.html#return-policy">Return & Refund Policy</a>
+      </div>
+      <div class="footer-copy">
+        © 2025 Maryjoy Ravila Retail Mart. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Example: Load the cart from localStorage and render summary table (simulate checkout)
+    function renderOrderSummary() {
+      let cart = [];
+      try {
+        const savedCart = localStorage.getItem('mjrm_cart');
+        if (savedCart) cart = JSON.parse(savedCart);
+      } catch(e){ cart = []; }
+      const tbody = document.getElementById('order-summary-table-body');
+      tbody.innerHTML = '';
+      let grandTotal = 0;
+      if (cart.length === 0) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td colspan="4" style="text-align:center;">No items found in your order.</td>';
+        tbody.appendChild(tr);
+      } else {
+        cart.forEach(item => {
+          let subtotal = item.qty * item.price;
+          grandTotal += subtotal;
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.qty}</td>
+            <td>₱${item.price.toLocaleString()}</td>
+            <td>₱${subtotal.toLocaleString()}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+      document.getElementById('order-summary-total').textContent = `₱${grandTotal.toLocaleString()}`;
+    }
+    window.addEventListener("DOMContentLoaded", renderOrderSummary);
+  </script>
+</body>
+</html>
