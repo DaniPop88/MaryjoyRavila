@@ -5,7 +5,7 @@
   <title>Maryjoy Ravila Retail Mart – Your Trusted Shopping Partner in Quezon City</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Shop fashion, home essentials, small electronics and more at Maryjoy Ravila Retail Mart. Trusted since 2010. Fast delivery, affordable prices, and excellent customer service in Quezon City and nationwide.">
-  <link rel="icon" type="image/png" href="FAVICON.png">
+  <link rel="icon" type="image/png" href="LOGO.png">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -393,7 +393,7 @@
       border: 1px solid #e6caa0;
     }
     .item-img-holder img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .item-img-placeholder { color: #c34726; font-size: 2em; }
+    .item-img- { color: #c34726; font-size: 2em; }
     .item-name { font-weight:700; color:var(--primary); margin-bottom:3px; font-size:.95em;}
     .item-qty { color:var(--danger); font-size:.95em; font-weight:700; margin-bottom:4px;}
     .item-price { color:var(--primary-bg); font-size:1em; font-weight:700; margin-bottom:5px;}
@@ -795,26 +795,26 @@
     function randQty() { return Math.floor(Math.random()*15)+7; }
     function randPrice(base) { return base+Math.floor(Math.random()*500); }
     const clothing = [
-      { name: "Classic T-Shirt", price: randPrice(250), qty: randQty(), img: "" },
-      { name: "Summer Dress", price: randPrice(550), qty: randQty(), img: "" },
-      { name: "Blue Denim Jeans", price: randPrice(680), qty: randQty(), img: "" },
-      { name: "Canvas Sneakers", price: randPrice(790), qty: randQty(), img: "" }
+      { name: "Classic T-Shirt", price: randPrice(250), qty: randQty(), img: "image/Pictures1" },
+      { name: "Summer Dress", price: randPrice(550), qty: randQty(), img: "image/Pictures2" },
+      { name: "Blue Denim Jeans", price: randPrice(680), qty: randQty(), img: "image/Pictures3" },
+      { name: "Canvas Sneakers", price: randPrice(790), qty: randQty(), img: "image/Pictures4" }
     ];
     const household = [
-      { name: "Comfort Bedding Set", price: randPrice(1190), qty: randQty(), img: "" },
-      { name: "Kitchen Knife Set", price: randPrice(490), qty: randQty(), img: "" },
-      { name: "Portable Blender", price: randPrice(980), qty: randQty(), img: "" },
-      { name: "All-Purpose Cleaner", price: randPrice(120), qty: randQty(), img: "" }
+      { name: "Comfort Bedding Set", price: randPrice(1190), qty: randQty(), img: "image/Pictures5" },
+      { name: "Kitchen Knife Set", price: randPrice(490), qty: randQty(), img: "image/Pictures6" },
+      { name: "Portable Blender", price: randPrice(980), qty: randQty(), img: "image/Pictures7" },
+      { name: "All-Purpose Cleaner", price: randPrice(120), qty: randQty(), img: "image/Pictures8" }
     ];
     const electronics = [
-      { name: "Wireless Headphones", price: randPrice(1200), qty: randQty(), img: "" },
-      { name: "Fast Charger", price: randPrice(350), qty: randQty(), img: "" },
-      { name: "Smart Home Plug", price: randPrice(680), qty: randQty(), img: "" }
+      { name: "Wireless Headphones", price: randPrice(1200), qty: randQty(), img: "image/Pictures9" },
+      { name: "Fast Charger", price: randPrice(350), qty: randQty(), img: "image/Pictures10" },
+      { name: "Smart Home Plug", price: randPrice(680), qty: randQty(), img: "image/Pictures11" }
     ];
     const accessories = [
-      { name: "Leather Wallet", price: randPrice(390), qty: randQty(), img: "" },
-      { name: "Canvas Tote Bag", price: randPrice(260), qty: randQty(), img: "" },
-      { name: "Stylish Hat", price: randPrice(210), qty: randQty(), img: "" }
+      { name: "Leather Wallet", price: randPrice(390), qty: randQty(), img: "image/Pictures12" },
+      { name: "Canvas Tote Bag", price: randPrice(260), qty: randQty(), img: "image/Pictures13" },
+      { name: "Stylish Hat", price: randPrice(210), qty: randQty(), img: "image/Pictures14" }
     ];
     function renderCategory(list, domId, cat) {
       const el = document.getElementById(domId);
@@ -824,7 +824,7 @@
         card.className = 'item-card';
         card.innerHTML = `
           <div class="item-img-holder">
-            <span class="item-img-placeholder">🛍️</span>
+            <span class="item-img-">🛍️</span>
           </div>
           <div class="item-name">${item.name}</div>
           <div class="item-qty">Stock: ${item.qty}</div>
